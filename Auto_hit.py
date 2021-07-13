@@ -2,8 +2,8 @@ import click
 from dgut_requests.dgut import dgutIllness
 from qcloudsms_py import SmsSingleSender
 from qcloudsms_py.httpclient import HTTPError
-import time
-
+import datetime
+import pytz
 
 
 
@@ -33,7 +33,7 @@ def main(username, password,location,message,app):
             report = u.report()
         print(report)
 
-        localtime = time.strftime("%H:%M:%S", time.localtime())
+        locatime = datetime.datetime.now(pytz.timezone('PRC')).strftime("%H:%M:%S")
         localtime = str(localtime)
         if(usr[1][2]!=0 and app!=None):
             sendMassage(app,usr[1][2],report,localtime)
