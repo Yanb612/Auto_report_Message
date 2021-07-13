@@ -32,8 +32,8 @@ def main(username, password,location,message,app):
         else:
             report = u.report()
         print(report)
-
-        locatime = datetime.datetime.now(pytz.timezone('PRC')).strftime("%H:%M:%S")
+        tz=pytz.timezone('Asia/Shanghai')
+        locatime = datetime.datetime.now(tz).strftime("%H:%M:%S")
         localtime = str(localtime)
         if(usr[1][2]!=0 and app!=None):
             sendMassage(app,usr[1][2],report,localtime)
