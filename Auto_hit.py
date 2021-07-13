@@ -33,7 +33,8 @@ def main(username, password,location,message,app):
             report = u.report()
         print(report)
         tz=pytz.timezone('Asia/Shanghai')
-        locatime = datetime.datetime.now(tz).strftime("%H:%M:%S")
+        utc = pytz.timezone('UTC')
+        locatime = datetime.datetime.replace(tzinfo=utc).astimezone(tz).strftime("%H:%M:%S")
         localtime = str(localtime)
         if(usr[1][2]!=0 and app!=None):
             sendMassage(app,usr[1][2],report,localtime)
