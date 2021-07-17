@@ -36,7 +36,8 @@ def main(username, password,location,message,app):
         utc = pytz.timezone('UTC')
         localtime = datetime.datetime.utcnow().replace(tzinfo = utc).astimezone(tzchina).strftime("%H:%M:%S")
         localtime = str(localtime)
-        if(usr[1][2]!=0 and app!=None):
+        report_message = report['message']
+        if(usr[1][2]!=0 and app!=None and report_message != "今日已提交，请勿重复操作"):
             sendMassage(app,usr[1][2],report,localtime)
 
 
@@ -55,11 +56,10 @@ def sendMassage(app,message,report,localtime):
             response = {'result': 1000, 'errmsg': "网络异常发送失败"}
         return response
     else:
-        report_message = report['message'];
-        template_param_list = [report['message'],localtime]
+        
+        template_param_list = [report_message,localtime]
         try:
-            if(report_message != "今日已提交，请勿重复操作"):
-                response = sender.send_with_param(86, phone_num, 1033210, template_param_list, sign=sign)
+            response = sender.send_with_param(86, phone_num, 1033210, template_param_list, sign=sign)
         except HTTPError as e:
             response = {'result': 1000, 'errmsg': "网络异常发送失败"}
         return response
