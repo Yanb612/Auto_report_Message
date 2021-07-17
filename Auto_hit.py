@@ -58,7 +58,7 @@ def sendMassage(app,message,report,localtime):
         report_message = report['message'];
         template_param_list = [report['message'],localtime]
         try:
-            if(report_message != "今日已提交，请勿重复操作")：
+            if(report_message != "今日已提交，请勿重复操作"):
                 response = sender.send_with_param(86, phone_num, 1033210, template_param_list, sign=sign)
         except HTTPError as e:
             response = {'result': 1000, 'errmsg': "网络异常发送失败"}
