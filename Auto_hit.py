@@ -32,16 +32,25 @@ def main(username, password,location,message,app):
         else:
             report = u.report()
         print(report)
+        getInfo = u.session.get(url='https://yqfk.dgut.edu.cn/home/base_info/getBaseInfo',headers=headers)
+        if json.loads(getInfo.text)['code'] != 200:
+            name = '--'
+            continue_days = '--'
+        else:
+            data = json.loads(getInfo.text)['info']
+            name = data['name']
+            continue_days = data['continue_days']
+        print(name,continue_days)
         tzchina = pytz.timezone('Asia/Shanghai')
         utc = pytz.timezone('UTC')
         localtime = datetime.datetime.utcnow().replace(tzinfo = utc).astimezone(tzchina).strftime("%H:%M:%S")
         localtime = str(localtime)
         report_message = report['message']
         if(usr[1][2]!=0 and app!=None and report_message != "今日已提交，请勿重复操作"):
-            sendMassage(app,usr[1][2],report,localtime)
+            sendMassage(app,usr[1][2],report,localtime,name,continue_days)
 
 
-def sendMassage(app,message,report,localtime):
+def sendMassage(app,message,report,localtime,name,continue_days):
 
     appid = int(app[0])
     appkey = app[1]
