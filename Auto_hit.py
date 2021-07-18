@@ -6,7 +6,10 @@ import datetime
 import pytz
 
 
-
+headers ={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',
+            'Host': 'yqfk.dgut.edu.cn',
+        }
 @click.command()
 @click.option('-U', '--username', required=True, help="中央认证账号用户名", type=str)
 @click.option('-P', '--password', required=True, help="中央认证账号密码", type=str)
