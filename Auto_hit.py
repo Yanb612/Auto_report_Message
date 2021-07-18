@@ -1,4 +1,5 @@
 import click
+import json
 from dgut_requests.dgut import dgutIllness
 from qcloudsms_py import SmsSingleSender
 from qcloudsms_py.httpclient import HTTPError
