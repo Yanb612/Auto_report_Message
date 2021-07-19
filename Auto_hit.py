@@ -62,9 +62,9 @@ def sendMassage(app,message,report,localtime,name,continue_days):
     sign = '煙與霧'
     sender = SmsSingleSender(appid,appkey)
     if report['code'] == 200:
-        template_param_list = [localtime]
+        template_param_list = [localtime,name,continue_days]
         try:
-            response  = sender.send_with_param(86,phone_num,1033208,template_param_list,sign=sign)
+            response  = sender.send_with_param(86,phone_num,1040456,template_param_list,sign=sign)
         except HTTPError as e:
             response = {'result': 1000, 'errmsg': "网络异常发送失败"}
         return response
