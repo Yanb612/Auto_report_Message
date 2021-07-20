@@ -52,6 +52,7 @@ def main(username, password,location,message,app):
         report_message = report['message']
         if(usr[1][2]!=0 and app!=None and report_message != "今日已提交，请勿重复操作"):
             sendMassage(app,usr[1][2],report,localtime,name,continue_days)
+        time.sleep(2)
 
 
 def sendMassage(app,message,report,localtime,name,continue_days):
